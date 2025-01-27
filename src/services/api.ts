@@ -91,10 +91,18 @@ export const addExpense = (data: {
 export const getUserExpenses = (): Promise<{ data: Expense[] }> =>
   api.get("/expenses");
 
+// export const getSpendingInsights = (params: {
+//   startDate: string;
+//   endDate: string;
+// }): Promise<{ data: SpendingInsights }> =>
+//   api.get("/expenses/insights", { params });
+
 export const getSpendingInsights = (params: {
   startDate: string;
   endDate: string;
-}): Promise<{ data: SpendingInsights }> =>
-  api.get("/expenses/insights", { params });
+}): Promise<{ data: SpendingInsights }> => {
+  console.log("Sending params to /expenses/insights:", params); // Debug log
+  return api.get("/expenses/insights", { params });
+};
 
 export default api;
