@@ -91,18 +91,14 @@ export const addExpense = (data: {
 export const getUserExpenses = (): Promise<{ data: Expense[] }> =>
   api.get("/expenses");
 
-// export const getSpendingInsights = (params: {
-//   startDate: string;
-//   endDate: string;
-// }): Promise<{ data: SpendingInsights }> =>
-//   api.get("/expenses/insights", { params });
-
 export const getSpendingInsights = (params: {
   startDate: string;
   endDate: string;
 }): Promise<{ data: SpendingInsights }> => {
-  console.log("Sending params to /expenses/insights:", params); // Debug log
-  return api.get("/expenses/insights", { params });
+  return api.post("/expenses/insights", params); // Use POST and send data in the body
 };
+
+export const getPrevInsights = (): Promise<{ data: SpendingInsights[] }> =>
+  api.get("/expenses/insights/previous");
 
 export default api;
