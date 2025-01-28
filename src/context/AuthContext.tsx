@@ -5,7 +5,7 @@ import React, {
   useContext,
   ReactNode,
 } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -21,23 +21,32 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true); // Add loading state
 
   // Check if user is authenticated on app load
   useEffect(() => {
     const storedAuthData = localStorage.getItem("auth");
 
     if (storedAuthData) {
-      const { isAuthenticated, expirationTime } = JSON.parse(storedAuthData);
+      try {
+        const { isAuthenticated, expirationTime } = JSON.parse(storedAuthData);
 
-      // Check if the session is still valid (1 hour expiration)
-      if (new Date().getTime() < expirationTime) {
-        setIsAuthenticated(isAuthenticated);
-      } else {
-        // Session expired, remove from localStorage
+        // Check if the session is still valid
+        if (new Date().getTime() < expirationTime) {
+          setIsAuthenticated(isAuthenticated);
+        } else {
+          // Session expired, remove from localStorage
+          localStorage.removeItem("auth");
+          setIsAuthenticated(false);
+        }
+      } catch (error) {
+        console.error("Error parsing auth data from localStorage:", error);
         localStorage.removeItem("auth");
         setIsAuthenticated(false);
       }
     }
+
+    setLoading(false); // Set loading to false after authentication check
   }, []);
 
   const login = () => {
@@ -58,10 +67,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsAuthenticated(false);
 
     // Optional: Call API to handle server-side logout (if required)
-    axios.post("/api/logout", {}, { withCredentials: true }).then(() => {
-      setIsAuthenticated(false);
-    });
+    // axios.post("/api/logout", {}, { withCredentials: true }).then(() => {
+    //   setIsAuthenticated(false);
+    // });
   };
+
+  // If loading, don't render children yet
+  if (loading) {
+    return <div>Loading...</div>; // Or a loading spinner
+  }
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>

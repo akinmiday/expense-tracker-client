@@ -1,14 +1,17 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../services/api";
+import { useAuth } from "../context/AuthContext";
 import "./styles/Navbar.css";
 
 const Navbar: React.FC = () => {
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await logoutUser();
+      logout();
       alert("Logout successful!");
       navigate("/login");
     } catch (err: unknown) {
