@@ -7,6 +7,7 @@ import "./styles/Auth.css";
 
 const Login: React.FC = () => {
   const [form, setForm] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false); // Add loading state
   const { login } = useAuth(); // Get login function from context
   const navigate = useNavigate();
 
@@ -16,6 +17,8 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when login starts
+
     try {
       await loginUser(form);
       login(); // Call login function from context
@@ -27,6 +30,8 @@ const Login: React.FC = () => {
       } else {
         alert("Failed to log in.");
       }
+    } finally {
+      setLoading(false); // Set loading to false when login ends
     }
   };
 
@@ -44,6 +49,7 @@ const Login: React.FC = () => {
             onChange={handleChange}
             required
             className="auth-input"
+            disabled={loading} // Disable input while loading
           />
         </div>
         <div className="auth-input-group">
@@ -56,10 +62,19 @@ const Login: React.FC = () => {
             onChange={handleChange}
             required
             className="auth-input"
+            disabled={loading} // Disable input while loading
           />
         </div>
-        <button type="submit" className="auth-button auth-button-login">
-          Login
+        <button
+          type="submit"
+          className="auth-button auth-button-login"
+          disabled={loading} // Disable button while loading
+        >
+          {loading ? (
+            <div className="spinner"></div> // Show spinner when loading
+          ) : (
+            "Login"
+          )}
         </button>
         <p className="auth-switch">
           Not a user?{" "}

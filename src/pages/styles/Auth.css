@@ -88,3 +88,30 @@
 .auth-link:hover {
   text-decoration: underline;
 }
+
+
+/* Spinner Styles */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3); /* Light gray border */
+  border-top: 3px solid #ffffff; /* White border for the spinner */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite; /* Spin animation */
+  margin: 0 auto; /* Center the spinner */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Disabled Button Styles */
+.auth-button:disabled {
+  background-color: #cccccc; /* Gray background for disabled button */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+}

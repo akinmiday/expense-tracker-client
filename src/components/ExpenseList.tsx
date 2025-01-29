@@ -25,7 +25,7 @@ const ExpenseList: React.FC<ExpenseListProps> = ({ expenses }) => {
 
   return (
     <div className="expense-list">
-      <h2 className="title">Expense Tracker</h2>
+      <h4 className="title">Expenses</h4>
       <ul className="expense-items">
         {expenses.map((expense) => (
           <li key={expense._id} className="expense-item">
