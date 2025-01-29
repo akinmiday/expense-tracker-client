@@ -177,6 +177,13 @@ The frontend communicates with the backend API using Axios. Below are the key AP
 
 ---
 
+## App Screenshots
+
+![Expense Tracker Logo](images/image1.png)
+![Expense Tracker Logo](images/image2.png)
+![Expense Tracker Logo](images/image3.png)
+![Expense Tracker Logo](images/image4.png)
+
 ## Contributing
 
 Contributions are welcome! To contribute:
