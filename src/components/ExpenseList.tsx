@@ -2,11 +2,11 @@ import React from "react";
 import { FaRegCalendarAlt, FaTags, FaMoneyBillWave } from "react-icons/fa";
 import "./styles/ExpenseList.css";
 
-interface Expense {
+export interface Expense {
   _id: string;
   amount: number;
   description: string;
-  category: string;
+  category?: string;
   date: string;
 }
 
