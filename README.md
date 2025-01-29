@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is the frontend for the Expense Tracker & Analyzer application, which integrates with the backend API to provide a seamless user experience for tracking expenses, gaining spending insights, and managing financial activities. The frontend is built using **React**, **React Router**, and **Axios** for API communication, with **JWT-based authentication** and **DeepSeek AI integration** for intelligent expense categorization and financial analysis.
+This is the frontend for the [**Expense Tracker & Analyzer application**](https://github.com/akinmiday/expense-tracker), which integrates with the backend API to provide a seamless user experience for tracking expenses, gaining spending insights, and managing financial activities. The frontend is built using **React**, **React Router**, and **Axios** for API communication, with **JWT-based authentication** and **DeepSeek AI integration** for intelligent expense categorization and financial analysis.
 
 ## Features
 
